@@ -9,6 +9,7 @@ const prodConfig = {
   mode: "production",
   output: {
     filename: "[name].[contenthash].js",
+    publicPath: "/marketing/latest/", // remote correct path to the file
   },
   plugins: [
     new ModuleFederationPlugin({
