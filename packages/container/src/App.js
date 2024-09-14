@@ -1,19 +1,15 @@
 import React from "react";
 import { mount } from "marketing/MarketingApp";
+import { BrowserRouter } from "react-router-dom";
 import MarketingApp from "./components/MarketingApp";
 
-import { Test } from "./components/Test";
-
-console.log("mount", mount);
+import Header from "./components/Header";
 
 export default () => {
   return (
-    <>
-      <Test />
-      <hr />
-      <hr />
-      <hr />
+    <BrowserRouter>
+      <Header signedIn onSignOut={() => console.log("test")} />
       <MarketingApp />
-    </>
+    </BrowserRouter>
   );
 };
