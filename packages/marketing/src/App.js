@@ -1,5 +1,9 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  unstable_HistoryRouter as HistoryRouter,
+} from "react-router-dom";
 import Landing from "./components/Landing";
 import Pricing from "./components/Pricing";
 import { StylesProvider, createGenerateClassName } from "@material-ui/core";
@@ -9,16 +13,17 @@ const generatedClassName = createGenerateClassName({
   productionPrefix: "ma",
 });
 
-export default function App() {
+// need to use memory history instead of browserRouter in hosts app
+export default function App({ history }) {
   return (
     <div>
       <StylesProvider generateClassName={generatedClassName}>
-        <BrowserRouter>
+        <HistoryRouter history={history}>
           <Routes>
             <Route path="/" element={<Landing />}></Route>
             <Route path="/pricing" element={<Pricing />}></Route>
           </Routes>
-        </BrowserRouter>
+        </HistoryRouter>
       </StylesProvider>
     </div>
   );
