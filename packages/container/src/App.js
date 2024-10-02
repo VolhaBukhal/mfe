@@ -18,20 +18,14 @@ export default () => {
   return (
     <StylesProvider generateClassName={generatedClassName}>
       <BrowserRouter>
-        <Header signedIn onSignOut={() => console.log("test")} />
+        <Header />
 
         <Switch>
           <Route path="/auth">
-            <>
-              <AuthApp />
-              <div>Auth</div>
-            </>
+            <AuthApp />
           </Route>
           <Route path="/">
-            <>
-              <div>Marketing</div>
-              <MarketingApp />
-            </>
+            <MarketingApp />
           </Route>
         </Switch>
       </BrowserRouter>

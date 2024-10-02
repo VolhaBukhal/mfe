@@ -9,12 +9,9 @@ export default () => {
   useEffect(() => {
     if (ref.current) {
       const { onParentNavigation } = mount(ref.current, {
+        initialPath: history.location.pathname,
         onNavigate: ({ location: { pathname: nextPathname } }) => {
           const { pathname } = history.location;
-          console.log("pathname, nextPathname in Marketing", [
-            pathname,
-            nextPathname,
-          ]);
 
           if (pathname !== nextPathname) {
             history.push(nextPathname);

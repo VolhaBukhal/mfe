@@ -21,7 +21,6 @@ export default function App({ history }) {
     <StylesProvider generateClassName={generatedClassName}>
       <HistoryRouter history={history}>
         <Routes>
-          <Route path="/" element={<SignIn />}></Route>
           <Route path="/auth/signin" element={<SignIn />}></Route>
           <Route path="/auth/signup" element={<SignUp />}></Route>
         </Routes>

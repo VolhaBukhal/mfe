@@ -11,15 +11,11 @@ export default () => {
       const { onParentNavigation } = mount(ref.current, {
         onNavigate: ({ location: { pathname: nextPathname } }) => {
           const { pathname } = history.location;
-          console.log("pathname, nextPathname in AuthApp", [
-            pathname,
-            nextPathname,
-          ]);
-
           if (pathname !== nextPathname) {
             history.push(nextPathname);
           }
         },
+        initialPath: history.location.pathname,
       });
 
       history.listen(onParentNavigation);
