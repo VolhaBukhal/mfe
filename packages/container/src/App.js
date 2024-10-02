@@ -1,13 +1,15 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import MarketingApp from "./components/MarketingApp";
-import AuthApp from "./components/AuthApp";
 import {
   StylesProvider,
   createGenerateClassName,
 } from "@material-ui/core/styles";
 
 import Header from "./components/Header";
+import LinearProgress from "@material-ui/core";
+
+const AuthAppLazy = lazy(() => import("./components/AuthApp"));
+const MarketingAppLzy = lazy(() => import("./components/MarketingApp"));
 
 // adding prefix to the short class name generated for production mode
 const generatedClassName = createGenerateClassName({
@@ -19,15 +21,16 @@ export default () => {
     <StylesProvider generateClassName={generatedClassName}>
       <BrowserRouter>
         <Header />
-
-        <Switch>
-          <Route path="/auth">
-            <AuthApp />
-          </Route>
-          <Route path="/">
-            <MarketingApp />
-          </Route>
-        </Switch>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route path="/auth">
+              <AuthAppLazy />
+            </Route>
+            <Route path="/">
+              <MarketingAppLzy />
+            </Route>
+          </Switch>
+        </Suspense>
       </BrowserRouter>
     </StylesProvider>
   );
