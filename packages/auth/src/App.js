@@ -16,13 +16,19 @@ const generatedClassName = createGenerateClassName({
 });
 
 // need to use memory history instead of browserRouter in hosts app
-export default function App({ history }) {
+export default function App({ history, onSignIn }) {
   return (
     <StylesProvider generateClassName={generatedClassName}>
       <HistoryRouter history={history}>
         <Routes>
-          <Route path="/auth/signin" element={<SignIn />}></Route>
-          <Route path="/auth/signup" element={<SignUp />}></Route>
+          <Route
+            path="/auth/signin"
+            element={<SignIn onSignIn={onSignIn} />}
+          ></Route>
+          <Route
+            path="/auth/signup"
+            element={<SignUp onSignIn={onSignIn} />}
+          ></Route>
         </Routes>
       </HistoryRouter>
     </StylesProvider>
